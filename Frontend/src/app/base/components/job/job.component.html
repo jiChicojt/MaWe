@@ -1,0 +1,203 @@
+<div class="alert alert-danger" role="alert" *ngIf="error">
+    <div class="alert-items">
+        <div class="alert-item static">
+            <div class="alert-icon-wrapper">
+                <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
+            </div>
+            <span class="alert-text">{{message}}</span>
+        </div>
+    </div>
+    <button type="button" class="close" aria-label="Close" (click)="close(1)">
+        <clr-icon aria-hidden="true" shape="close"></clr-icon>
+    </button>
+</div>
+
+<div class="alert alert-success" role="alert" *ngIf="success">
+    <div class="alert-items">
+        <div class="alert-item static">
+            <div class="alert-icon-wrapper">
+                <clr-icon class="alert-icon" shape="check-circle"></clr-icon>
+            </div>
+            <span class="alert-text">{{message}}</span>
+        </div>
+    </div>
+    <button type="button" class="close" aria-label="Close" (click)="close(2)">
+        <clr-icon aria-hidden="true" shape="close"></clr-icon>
+    </button>
+</div>
+
+<div class="clr-row" style="border-bottom-style: solid; border-bottom-color: #6997DB; border-width: 2px;">
+    <h3>Lista de trabajos</h3>
+    <span style="flex: 1 1 auto;"></span>
+    <button class="btn btn-icon btn-primary" type="button" aria-label="add" (click)="open()">
+        <clr-icon shape="plus"></clr-icon>
+    </button>
+</div>
+<div class="clr-row">
+    <div class="card" *ngFor="let jobie of jobs">
+        <div class="card-header">
+            <clr-icon shape="briefcase" class="is-solid" style="margin: 0px 10px 0px 10px"></clr-icon>
+            <strong>{{jobie.name}}</strong>
+            <span class="card-media-title" style="color: #ff9e00; margin: 0px 5px 0px 10px">
+                <clr-icon shape="eye" class="is-solid"></clr-icon>
+                {{jobie.seen}}
+            </span>
+            <span class="card-media-text" style="color: #8bc34a; margin: 0px 5px">
+                <clr-icon shape="check" class="is-solid"></clr-icon>
+                {{jobie.matched}}
+            </span>
+        </div>
+        <div class="card-block">
+            <div class="card-text">
+                <div><strong>Descripción</strong>: {{jobie.description}}</div>
+                <div><strong>Experiencia</strong>: {{jobie.experience}} años</div>
+                <div class="clr-row">
+                    <div class="clr-col-md-4">
+                        <ul class="list">
+                            <li *ngIf="jobie.languages">
+                                <strong>Idiomas</strong>
+                                <ul class="list">
+                                    <li *ngFor="let language of jobie.languages">
+                                        {{language.language}}</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="clr-col-md-4">
+                        <ul class="list">
+                            <li *ngIf="jobie.aptitudes">
+                                <strong>Aptitudes</strong>
+                                <ul class="list">
+                                    <li *ngFor="let aptitude of jobie.aptitudes">
+                                        {{aptitude.aptitude}}</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="clr-col-md-4">
+                        <div class="clr-row"><strong>Escolaridad: </strong>{{jobie.schooling}}</div>
+                        <div class="clr-row"><strong>Salario: </strong>Q. {{jobie.salary}}</div>
+                        <div class="clr-row"><strong>Experiencia: </strong>{{jobie.experience}} años</div>
+                        <div class="clr-row"><strong>Edad: </strong>{{jobie.age}} años</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <button class="btn btn-sm btn-warning" (click)="deleteJob(jobie._id)">Eliminar</button>
+            <button class="btn btn-sm btn-primary" (click)="show(jobie._id)" *ngIf="jobie.matched > 0">Ver aplicantes
+            </button>
+        </div>
+    </div>
+</div>
+
+<clr-wizard #wizard [(clrWizardOpen)]="_open">
+    <clr-wizard-title>Agregar nuevo empleo</clr-wizard-title>
+
+    <clr-wizard-button [type]="'cancel'">Cerrar</clr-wizard-button>
+    <clr-wizard-button [type]="'previous'">Regresar</clr-wizard-button>
+    <clr-wizard-button [type]="'next'">Siguiente</clr-wizard-button>
+    <clr-wizard-button [type]="'finish'" (click)="createJob()">Agregar</clr-wizard-button>
+
+    <clr-wizard-page [clrWizardPageNextDisabled]="name.pristine || !formPageOne.valid">
+        <ng-template clrPageTitle>Información del empleo</ng-template> <!-- mandatory -->
+
+        <form clrForm #formPageOne="ngForm">
+            <clr-input-container>
+                <label>Puesto</label>
+                <input clrInput required [(ngModel)]="job.name" name="name" #name="ngModel"/>
+                <clr-control-error>Este campo es obligatorio</clr-control-error>
+            </clr-input-container>
+
+            <clr-input-container>
+                <label>Salario</label>
+                <input clrInput required type="number" [(ngModel)]="job.salary" name="salary" #salary="ngModel"/>
+                <clr-control-error>Este campo es obligatorio</clr-control-error>
+            </clr-input-container>
+
+            <clr-textarea-container>
+                <label>Descripción del empleo</label>
+                <textarea clrTextarea required [(ngModel)]="job.description" name="description"
+                          #description="ngModel"></textarea>
+            </clr-textarea-container>
+        </form>
+    </clr-wizard-page>
+
+    <clr-wizard-page [clrWizardPageNextDisabled]="min.pristine || !formPageTwo.valid">
+        <ng-template clrPageTitle>Información de la persona</ng-template> <!-- mandatory -->
+        <ng-template clrPageNavTitle>Información de la persona</ng-template> <!-- optional -->
+
+        <form #formPageTwo="ngForm">
+            <div class="clr-row">
+                <div class="clr-col-md-6">
+                    <clr-input-container>
+                        <label>Edad mínima</label>
+                        <input clrInput required type="number" [(ngModel)]="xtr.min" name="min" #min="ngModel"/>
+                        <clr-control-error>Este campo es obligatorio</clr-control-error>
+                    </clr-input-container>
+                </div>
+                <div class="clr-col-md-6">
+                    <clr-input-container>
+                        <label>Edad máxima</label>
+                        <input clrInput required type="number" [(ngModel)]="xtr.max" name="max" #max="ngModel"/>
+                        <clr-control-error>Este campo es obligatorio</clr-control-error>
+                    </clr-input-container>
+                </div>
+            </div>
+
+            <clr-input-container>
+                <label>Profesión</label>
+                <input clrInput required [(ngModel)]="job.profession" name="profession" #profession="ngModel"/>
+                <clr-control-error>Este campo es obligatorio</clr-control-error>
+            </clr-input-container>
+
+            <clr-input-container>
+                <label>Experiencia</label>
+                <input clrInput required type="number" [(ngModel)]="job.experience" name="experience"
+                       #experience="ngModel"/>
+                <clr-control-error>Este campo es obligatorio</clr-control-error>
+            </clr-input-container>
+
+            <clr-input-container>
+                <label>Escolaridad (Primaria, básicos, etc.)</label>
+                <input clrInput required [(ngModel)]="job.schooling" name="schooling" #schooling="ngModel"/>
+                <clr-control-error>Este campo es obligatorio</clr-control-error>
+            </clr-input-container>
+
+            <div class="clr-row">
+                <div class="clr-col-md-6">
+                    <clr-input-container style="margin-right: 5px;">
+                        <label>Idiomas</label>
+                        <input clrInput [(ngModel)]="xtr.language" name="language" #language="ngModel"/>
+                    </clr-input-container>
+                    <button class="btn btn-icon btn-primary btn-sm" type="button" aria-label="newLanguage"
+                            (click)="newLanguage()"
+                            style="display: inline-block; vertical-align: middle; margin-right: 5px;">
+                        <clr-icon shape="check"></clr-icon>
+                    </button>
+                    <div style="display: inline-block; vertical-align: middle;" *ngFor="let language of job.languages">
+                        <span class="label label-blue">{{language.language}}
+                            <a class="badge" (click)="delLanguage(language.language)">x</a>
+                        </span>
+                    </div>
+                </div>
+                <div class="clr-col-md-6">
+                    <clr-input-container style="margin-right: 5px;">
+                        <label>Aptitudes</label>
+                        <input clrInput [(ngModel)]="xtr.aptitude" name="aptitudes" #aptitudes="ngModel"/>
+                    </clr-input-container>
+                    <button class="btn btn-icon btn-primary btn-sm" type="button" aria-label="newAptitudes"
+                            (click)="newAptitude()"
+                            style="display: inline-block; vertical-align: middle; margin-left: 5px;">
+                        <clr-icon shape="check"></clr-icon>
+                    </button>
+                    <div style="display: inline-block; vertical-align: middle;" *ngFor="let attribute of job.aptitudes">
+                        <span class="label label-blue">{{attribute.aptitude}}
+                            <a class="badge" (click)="delAptitude(attribute.aptitude)">x</a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </clr-wizard-page>
+</clr-wizard>

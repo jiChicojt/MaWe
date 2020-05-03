@@ -1,0 +1,96 @@
+<div class="clr-row" style="border-bottom-style: solid; border-bottom-color: #6997DB; border-width: 2px;">
+    <h3>Aplicantes</h3>
+</div>
+<div class="clr-row">
+    <div class="card" *ngFor="let applicant of applicants">
+        <div class="card-header">
+            {{applicant.personalInfo.name}} {{applicant.personalInfo.lastname}}
+        </div>
+        <div class="card-block">
+            <div class="card-text">
+                <div class="card-title">Información personal</div>
+                <div class="clr-row">
+                    <div class="clr-col-md-6"><strong>Fecha de nacimiento</strong>: {{applicant.personalInfo.birthdate}}</div>
+                    <div class="clr-col-md-6"><strong>Correo Electrónico</strong>: {{applicant.personalInfo.email}}</div>
+                    <div class="clr-col-md-6"><strong>Número de teléfono</strong>: {{applicant.personalInfo.phone}}</div>
+                    <div class="clr-col-md-6"><strong>Dirección</strong>: {{applicant.personalInfo.country}}
+                        , {{applicant.personalInfo.city}} {{applicant.personalInfo.address}}</div>
+                    <div class="clr-col-md-6"><strong>Profesión</strong>: {{applicant.personalInfo.profession}}</div>
+                    <div class="clr-col-md-6"><strong>Experiencia</strong>: {{applicant.personalInfo.experience}} años</div>
+                </div>
+                <div class="clr-row">
+                    <div class="clr-col-md-6">
+                        <ul class="list">
+                            <li *ngIf="applicant.personalInfo.languages">
+                                <strong>Idiomas</strong>
+                                <ul class="list">
+                                    <li *ngFor="let language of applicant.personalInfo.languages">
+                                        {{language.language}}</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="clr-col-md-6">
+                        <ul class="list">
+                            <li *ngIf="applicant.personalInfo.aptitudes">
+                                <strong>Aptitudes</strong>
+                                <ul class="list">
+                                    <li *ngFor="let aptitude of applicant.personalInfo.aptitudes">
+                                        {{aptitude.aptitude}}</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card-title" style="margin-top: 10px">Educación</div>
+                <div class="card" *ngFor="let school of applicant.education">
+                    <div class="card-header">
+                        <strong>{{school.school}}</strong>   -   {{school.degree}}
+                    </div>
+                    <div class="card-block">
+                        <div class="card-text">
+                            <div class="clr-row">
+                                <div class="clr-col-md-12">
+                                    <strong>Desempeño: </strong>{{school.description}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="clr-row">
+                            <div class="clr-col-md-6"><strong>Inicio: </strong>{{school.startDate}}</div>
+                            <div class="clr-col-md-6"><strong>Fin: </strong>{{school.endDate}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-title" style="margin-top: 10px">Experencia laboral</div>
+                <div class="card" *ngFor="let job of applicant.laboral">
+                    <div class="card-header">
+                        <strong>{{job.title}}</strong>   -   {{job.enterprise}}
+                    </div>
+                    <div class="card-block">
+                        <div class="card-text">
+                            <div class="clr-row">
+                                <div class="clr-col-md-6">
+                                    <strong>Jefe:</strong> {{job.boss}}
+                                </div>
+                                <div class="clr-col-md-6">
+                                    <strong>Número de telefono:</strong> {{job.phone}}
+                                </div>
+                                <div class="clr-col-md-12">
+                                    <strong>Desempeño: </strong>{{job.description}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="clr-row">
+                            <div class="clr-col-md-6"><strong>Inicio: </strong>{{job.startDate}}</div>
+                            <div class="clr-col-md-6"><strong>Fin: </strong>{{job.endDate}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

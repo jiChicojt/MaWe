@@ -97,15 +97,20 @@ def matchAptitudes(jAptitudes, cAptitudes):
 
 # Mostrar cv
 @app.route('/cv/<id>', methods = ['GET'])
-def get_cv(id):
-    cv = CV.find_one({'_id': ObjectId(id)})
+def get_cvs(id):
+    jobs = Jobs.find_one({'_id': ObjectId(id)})
+    jobs = json.loads(json_util.dumps(jobs))
 
-    if cv:
-        response = json_util.dumps(cv)
+    if len(jobs['cvs']) > 0:
+        cvs = []
 
-        return Response(response, mimetype = 'application/json')
+        for cvId in jobs['cvs']:
+            cv = CV.find_one({'_id': ObjectId(cvId)})
+            cvs.append(json.loads(json_util.dumps(cv)))
+
+        return Response(json_util.dumps(cvs), mimetype = 'application/json')
     else:
-        return not_found()
+        return not_found('No hay aplicantes para este trabajo')
 
 @app.route('/cv/match/<id>/<cv>', methods=['POST'])
 def match_job(id, cv):

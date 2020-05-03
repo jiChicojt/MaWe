@@ -40,7 +40,7 @@ def login():
 
 
 # Agregar un usuario nuevo
-@app.route('/users', methods = ['POST'])
+@app.route('/signup', methods = ['POST'])
 def create_user():
     name = request.json['name']
     email = request.json['email']

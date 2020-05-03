@@ -1,0 +1,72 @@
+<div class="login-wrapper">
+    <form class="login" (ngSubmit)="login()" #LoginForm="ngForm">
+        <section class="title">
+            <h3 class="welcome">Bienvenido a</h3>
+            MaWe
+            <h5 class="hint">Utiliza las credenciales otorgadas por tu empresa para iniciar sesión</h5>
+        </section>
+        <div class="login-group">
+            <clr-input-container>
+                <label class="clr-sr-only">Email</label>
+                <input type="text" name="email" clrInput placeholder="Email" [(ngModel)]="loginRequest.email" required/>
+            </clr-input-container>
+            <clr-password-container>
+                <label class="clr-sr-only">Contraseña</label>
+                <input type="password" name="password" clrPassword placeholder="Password"
+                       [(ngModel)]="loginRequest.password"
+                       required/>
+            </clr-password-container>
+            <clr-checkbox-wrapper>
+                <label>Recuérdame</label>
+                <input type="checkbox" name="rememberMe" clrCheckbox [(ngModel)]="rememberMe"/>
+            </clr-checkbox-wrapper>
+            <a (click)="opened = true">Registrarse</a>
+            <div class="error active" *ngIf="error">
+                {{err}}
+            </div>
+            <button type="submit" class="btn btn-primary">INGRESAR</button>
+        </div>
+    </form>
+    <clr-modal [(clrModalOpen)]="opened" [clrModalStaticBackdrop]="false">
+        <h3 class="modal-title">Regístrate</h3>
+        <div class="modal-body">
+            <form clrForm [formGroup]="formGroup" (ngSubmit)="register()">
+              <div class="clr-row">
+                <div class="clr-col-md-6">
+                  <clr-input-container>
+                    <label class="clr-sr-only">Nombre</label>
+                    <input placeholder="Nombre" clrInput formControlName="name"/>
+                    <clr-control-error *clrIfError="'required'">Este es un campo obligatorio</clr-control-error>
+                  </clr-input-container>
+                </div>
+                <div class="clr-col-md-6">
+                  <clr-input-container>
+                    <label class="clr-sr-only">Email</label>
+                    <input type="text" clrInput placeholder="Email" formControlName="email"/>
+                    <clr-control-error *clrIfError="'required'">Este es un campo obligatorio</clr-control-error>
+                    <clr-control-error *clrIfError="'email'">Correo inválido</clr-control-error>
+                  </clr-input-container>
+                </div>
+                <div class="clr-col-md-6">
+                  <clr-password-container>
+                    <label class="clr-sr-only">Contraseña</label>
+                    <input type="password" clrPassword placeholder="Contraseña" formControlName="password"/>
+                    <clr-control-error *clrIfError="'required'">Este es un campo obligatorio</clr-control-error>
+                  </clr-password-container>
+                </div>
+                <div class="clr-col-md-6">
+                  <clr-input-container>
+                    <label class="clr-sr-only">Empresa</label>
+                    <input type="text" clrInput placeholder="Empresa" formControlName="enterprise"/>
+                    <clr-control-error *clrIfError="'required'">Este es un campo obligatorio</clr-control-error>
+                  </clr-input-container>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline" (click)="opened = false">Cancel</button>
+                <button type="submit" class="btn btn-primary" [disabled]="formGroup.invalid">Registrarse</button>
+              </div>
+            </form>
+        </div>
+    </clr-modal>
+</div>

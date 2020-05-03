@@ -1,0 +1,48 @@
+<clr-main-container>
+    <div class="alert alert-app-level alert-danger" role="alert" *ngIf="error">
+        <div class="alert-items">
+            <div class="alert-item static">
+                <div class="alert-icon-wrapper">
+                    <clr-icon class="clr-icon" shape="warning-standard"></clr-icon>
+                </div>
+                <div class="alert-text">
+                    Su sesión expiró
+                </div>
+            </div>
+        </div>
+        <div type="button" class="close" aria-label="close">
+            <clr-icon shape="times" aria-hidden="true"></clr-icon>
+        </div>
+    </div>
+    <clr-header class="header-4" style="background: #6997DB;">
+        <div class="branding">
+            <a>
+                <clr-icon shape="rack-server" class="is-solid"></clr-icon>
+                <span class="title" >MAWE</span>
+            </a>
+        </div>
+        <div class="header-actions">
+            <clr-dropdown clrPosition="bottom-right" style="color: #444444;">
+                <button class="nav-text" clrDropdownTrigger aria-label="open user action">
+                    {{identity.name}}
+                    <clr-icon shape="caret down"></clr-icon>
+                </button>
+                <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
+                    <a class="dropdown-divider" role="separator"></a>
+                    <a (click)="logout()" clrDropdownItem>Log out</a>
+                </clr-dropdown-menu>
+            </clr-dropdown>
+        </div>
+    </clr-header>
+
+    <div class="content-container">
+        <main class="content-area">
+            <router-outlet></router-outlet>
+        </main>
+        <clr-vertical-nav class="sidenav" [clr-nav-level]="1">
+            <a clrVerticalNavLink routerLink="jobs" routerLinkActive="active">
+                <clr-icon shape="clipboard"></clr-icon> Lista de trabajos
+            </a>
+        </clr-vertical-nav>
+    </div>
+</clr-main-container>
