@@ -19,5 +19,9 @@ Para levantar esta necesitarás descargar e instalar Node.js en versión LTS (ht
 ***$ npm install***</br></br>
 Posteriormente deberás ejecutar el comando</br></br>
 ***$ ng serve -o***</br></br>
+# MongoDB
+Para la base de datos debes instalar MongoDB (https://www.mongodb.com/download-center/community).
+Cuando abras el instalador debes darle siguiente hasta que pregunte qué tipo de instalación quieres, selecciona completa para que sea más fácil. Después te preguntará la configuración del servicio, deselecciona la opción **Install MongoD as a service**, dale siguiente y deselecciona la opción **Install MongoDB Compass**, dale siguiente hasta que se termine de instalar.</br></br>
+Después de eso crea una carpeta en el C que se llame **data** y dentro de esta crea una carpeta llamada **db**. Por último, ingresa al ***C>Todos los programas>MongoDB>Server>4.2>Bin*** y haz doble click en el archivo **mongod**. Después de esto ya tendrás configurada la base datos.
 # Nota importante
 Deberás estar ejecutando los dos servicios para poder utilizarlos
