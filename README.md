@@ -15,7 +15,7 @@ Cuando estas terminen de instalarse podrás ejecutar el proyecto utilizando</br>
 # MaWe - Frontend
 MaWe's angular frontend\
 Para levantar esta necesitarás descargar e instalar Node.js en versión LTS (https://nodejs.org/en/). Una vez instalado puedes preparar el ambiente para levantar la página, deberás abrir la terminal dentro de la carpeta **Frontend** y ejecutar el comando</br></br>
-***$ npm install @angular/cli***</br></br>
+***$ npm install -g @angular/cli***</br></br>
 ***$ npm install***</br></br>
 Posteriormente deberás ejecutar el comando</br></br>
 ***$ ng serve -o***</br></br>
