@@ -4,7 +4,9 @@ Te recomiendo abrir los proyectos utilizando un IDE más completo, yo utilizo VS
 MaWe's python backend\
 Antes de correr el programa debes asegurate de tener instalada la versión 3.x de Python, si esta no está instalada habrá problemas al ejecutar el API. Una vez verificado, abre una terminal en la carpeta del proyecto (*si estás en VS Code basta con hacer click en **Terminal>Nueva terminal** en la barra de herramientas*), después de esto deberás instalar virtualenv para crear un entorno virtual.</br></br>
 ***$ pip install virtualenv***</br></br>
-Una vez completado este paso deberás ejecutar el entorno virtual</br></br>
+Una vez completado este paso deberás crear un entorno virtual</br></br>
+***$ virtualenv vnv***</br></br>
+Ahora, deberás ejecutar el entorno virtual</br></br>
 ***$ .\vnv\Scripts\activate.bat***</br></br>
 Luego deberás instalar las dependencias utilizadas para el proyecto</br></br>
 ***$ pip install flask flask-pymongo flask_cors flask_jwt_extended***</br></br>
