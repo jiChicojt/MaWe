@@ -22,6 +22,10 @@ export class StatsComponent implements OnInit {
     {data: [], label: 'Matches'}
   ];
   public pieChartData = [];
+  public pieChartColors: Array < any > = [{
+    backgroundColor: ['#87DCC0', '#998AD3'],
+    borderColor: ['#ece9d7', '#ece9d7']
+  }];
 
   constructor(private userService: AuthService,
               private jobService: JobService) {
