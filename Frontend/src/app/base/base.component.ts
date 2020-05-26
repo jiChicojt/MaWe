@@ -11,6 +11,9 @@ import { AuthService } from '../services/auth.service';
 export class BaseComponent implements OnInit {
 
   private error = false;
+  private dashActive = 'active';
+  private jobsActive = 'inactive';
+  collapsed = true;
 
   identity = new UsersModel(' ', '', '', '');
 

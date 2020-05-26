@@ -18,8 +18,8 @@ export class JobComponent implements OnInit {
   _open = false;
   job: JobModel;
   xtr = {
-    min: 0,
-    max: 0,
+    min: 18,
+    max: 70,
     language: '',
     aptitude: ''
   };
@@ -31,7 +31,7 @@ export class JobComponent implements OnInit {
 
   // tslint:disable-next-line:variable-name
   constructor(private _jobService: JobService, private _authService: AuthService, private router: Router) {
-    this.job = new JobModel('', '', '', 0, '', '', 0, '', '', [{ language: '' }], [{ aptitude: '' }], 0, 0, [null], 0, '');
+    this.job = new JobModel('', '', '', 2500, '', '', 0, '', '', [{ language: '' }], [{ aptitude: '' }], 0, 0, [null], 0, '');
     this.job.languages.pop();
     this.job.aptitudes.pop();
   }

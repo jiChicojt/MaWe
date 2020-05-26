@@ -50,7 +50,7 @@
         <div class="card-block">
             <div class="card-text">
                 <div><strong>Descripción</strong>: {{jobie.description}}</div>
-                <div><strong>Experiencia</strong>: {{jobie.experience}} años</div>
+                <br>
                 <div class="clr-row">
                     <div class="clr-col-md-4">
                         <ul class="list">
@@ -111,8 +111,9 @@
 
             <clr-input-container>
                 <label>Salario</label>
-                <input clrInput required type="number" [(ngModel)]="job.salary" name="salary" #salary="ngModel"/>
+                <input clrInput required name="salary" [(ngModel)]="job.salary" appMinValidator="2500" #salary="ngModel"/>
                 <clr-control-error>Este campo es obligatorio</clr-control-error>
+                <div *ngIf="salary.errors?.appMinValidator">Este valor está por debajo del mínimo aceptado.</div>
             </clr-input-container>
 
             <clr-textarea-container>
@@ -132,14 +133,14 @@
                 <div class="clr-col-md-6">
                     <clr-input-container>
                         <label>Edad mínima</label>
-                        <input clrInput required type="number" [(ngModel)]="xtr.min" name="min" #min="ngModel"/>
+                        <input clrInput required type="number" [(ngModel)]="xtr.min" name="min" #min="ngModel" min="16" autofocus/>
                         <clr-control-error>Este campo es obligatorio</clr-control-error>
                     </clr-input-container>
                 </div>
                 <div class="clr-col-md-6">
                     <clr-input-container>
                         <label>Edad máxima</label>
-                        <input clrInput required type="number" [(ngModel)]="xtr.max" name="max" #max="ngModel"/>
+                        <input clrInput required type="number" [(ngModel)]="xtr.max" name="max" #max="ngModel" max="70"/>
                         <clr-control-error>Este campo es obligatorio</clr-control-error>
                     </clr-input-container>
                 </div>

@@ -39,9 +39,16 @@
         <main class="content-area">
             <router-outlet></router-outlet>
         </main>
-        <clr-vertical-nav class="sidenav" [clr-nav-level]="1">
-            <a clrVerticalNavLink routerLink="jobs" routerLinkActive="active">
-                <clr-icon shape="clipboard"></clr-icon> Lista de trabajos
+        <clr-vertical-nav [clrVerticalNavCollapsible]="true" [(clrVerticalNavCollapsed)]="collapsed" class="sidenav"
+                          [clr-nav-level]="1">
+            <a #rld="routerLinkActive" routerLinkActive="rld.isActive" clrVerticalNavLink routerLink="">
+                <clr-icon clrVerticalNavIcon shape="bar-chart"></clr-icon>
+                Dashboard
+            </a>
+            <a #rlj="routerLinkActive" routerLinkActive="rlj.isActive" clrVerticalNavLink routerLink="jobs"
+               clrFocusOnViewInit>
+                <clr-icon clrVerticalNavIcon shape="clipboard"></clr-icon>
+                Lista de trabajos
             </a>
         </clr-vertical-nav>
     </div>

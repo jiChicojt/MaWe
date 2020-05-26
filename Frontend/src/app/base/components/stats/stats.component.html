@@ -1,0 +1,20 @@
+<div id="barChartContainer" class="clr-row">
+    <div class="clr-col-8">
+        <canvas id="barChart" baseChart
+                [datasets]="barChartData"
+                [labels]="barChartLabels"
+                [options]="barChartOptions"
+                [legend]="barChartLegend"
+                [chartType]="barChartType"
+        >
+        </canvas>
+    </div>
+    <div id="pieChartContainer" class="clr-col-4">
+        <canvas id="pieChart" baseChart
+                [data]="pieChartData"
+                [labels]="pieChartLabels"
+                [chartType]="pieChartType"
+        >
+        </canvas>
+    </div>
+</div>

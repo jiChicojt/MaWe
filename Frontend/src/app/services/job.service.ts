@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { JobModel } from '../models/job.model';
 import { GLOBAL } from './global.service';
+import {StatsModel} from "../models/stats.model";
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,10 @@ export class JobService {
 
   getJobs(enterprise: string): Observable<any> {
       return this.http.get(this.url + '/' + enterprise, { headers: this.thyHeaders });
+  }
+
+  getJobStats(enterprise: string): Observable<StatsModel> {
+      return this.http.get<StatsModel>(this.url + '/stats/' + enterprise, { headers: this.thyHeaders });
   }
 
   deleteJob(id: string): Observable<any> {

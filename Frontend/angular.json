@@ -131,5 +131,8 @@
       }
     }
   },
-  "defaultProject": "Mawe"
+  "defaultProject": "Mawe",
+  "cli": {
+    "analytics": "fcb401e7-025a-4138-b6da-004b2b656830"
+  }
 }

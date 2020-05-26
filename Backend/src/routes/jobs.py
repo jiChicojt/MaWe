@@ -39,8 +39,32 @@ def create_jobs():
 def get_jobs(enterprise):
     jobs = Jobs.find({'enterprise': enterprise})
 
-    if Jobs:
+    if jobs:
         response = json_util.dumps(jobs)
+        return Response(response, mimetype='application/json')
+    else:
+        return not_found()
+
+@app.route('/jobs/stats/<enterprise>', methods=['GET'])
+def get_jobs_stats(enterprise):
+    jobs = Jobs.find({'enterprise': enterprise})
+
+    if jobs:
+        jobs = list(jobs)
+        seen = 0
+        matched = 0
+
+        stats = {'totalSeen': 0, 'totalMatches': 0, 'jobs': []}
+        for job in jobs:
+            seen += job['seen']
+            matched += job['matched']
+            stats['jobs'].append({'name': job['name'], 'seen': job['seen'], 'matches': job['matched']})
+
+        stats['totalSeen'] = seen
+        stats['totalMatches'] = matched
+
+        response = json_util.dumps(stats)
+
         return Response(response, mimetype='application/json')
     else:
         return not_found()
