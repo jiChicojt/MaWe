@@ -14,8 +14,8 @@ Users = mongo.db.users
 # Login
 @app.route('/login', methods = ['POST'])
 def login():
-    email = request.json['email']
-    password = request.json['password']
+    email = request.json['email'].strip()
+    password = request.json['password'].strip()
 
     if email and password:
         user = json_util.dumps(Users.find_one({'email': email}))
@@ -42,10 +42,10 @@ def login():
 # Agregar un usuario nuevo
 @app.route('/signup', methods = ['POST'])
 def create_user():
-    name = request.json['name']
-    email = request.json['email']
-    password = request.json['password']
-    enterprise = request.json['enterprise']
+    name = request.json['name'].strip()
+    email = request.json['email'].strip()
+    password = request.json['password'].strip()
+    enterprise = request.json['enterprise'].strip()
 
     if enterprise and password and email:
         hashed_password = generate_password_hash(password)

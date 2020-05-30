@@ -28,10 +28,11 @@ export class JobComponent implements OnInit {
   success = false;
   enterprise = this._authService.getIdentity().enterprise;
   jobs: Array<JobModel> = [];
+  minSalary = '2500';
 
   // tslint:disable-next-line:variable-name
   constructor(private _jobService: JobService, private _authService: AuthService, private router: Router) {
-    this.job = new JobModel('', '', '', 2500, '', '', 0, '', '', [{ language: '' }], [{ aptitude: '' }], 0, 0, [null], 0, '');
+    this.job = new JobModel('', '', '', 2500, '', '', 0, '', 1, [{ language: '' }], [{ aptitude: '' }], 0, 0, [null], 0, '');
     this.job.languages.pop();
     this.job.aptitudes.pop();
   }
@@ -78,6 +79,7 @@ export class JobComponent implements OnInit {
   createJob() {
     this.job.age = this.xtr.min.toString() + '-' + this.xtr.max.toString();
     this.job.enterprise = this.enterprise;
+    this.job.schooling = +this.job.schooling;
 
     this._jobService.createJob(this.job).subscribe(
       success => {
@@ -87,7 +89,7 @@ export class JobComponent implements OnInit {
 
         this.wizard.reset();
         // tslint:disable-next-line:max-line-length
-        this.job = { _id: '', name: '', enterprise: '', salary: 0, description: '', age: '', experience: 0, profession: '', schooling: '', languages: [{ language: '' }], aptitudes: [{ aptitude: '' }], seen: 0, matched: 0, cvs: [null], matchedP: 0, cvId: '' };
+        this.job = { _id: '', name: '', enterprise: '', salary: 0, description: '', age: '', experience: 1, profession: '', schooling: 0, languages: [{ language: '' }], aptitudes: [{ aptitude: '' }], seen: 0, matched: 0, cvs: [null], matchedP: 0, cvId: '' };
         this.job.languages.pop();
         this.job.aptitudes.pop();
       },

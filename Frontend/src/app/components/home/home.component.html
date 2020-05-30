@@ -376,7 +376,7 @@
                                     <span style="flex: 1 1 auto;"></span>
                                     <h3 *ngIf="school.matchedP >= 90"
                                         style="color: #3C8500; margin-right: 15px; margin-bottom: 5px">
-                                        Afinidad: {{school.matchedP}}%</h3>
+                                        Afinidad: {{school.matchedP | number: '2.0-2'}}%</h3>
                                     <a role="tooltip" aria-haspopup="true" class="tooltip tooltip-xs">
                                         <button *ngIf="school.matchedP >= 90" class="btn btn-icon btn-success"
                                                 type="button"

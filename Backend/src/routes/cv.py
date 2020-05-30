@@ -15,27 +15,27 @@ def create_cv():
     personalInfo = request.json['personalInfo']
     education = request.json['education']
     laboral = request.json['laboral']
-
+    
+    personalInfo = {key: value.strip() if isinstance(value, str) else value for key, value in personalInfo.items()}
     if personalInfo and education and laboral:
         cv = CV.insert(
             {'personalInfo': personalInfo, 'education': education, 'laboral': laboral}
         )
+        minDegree = min(education, key = lambda x: int(x['degree']))
         
-        jobs = Jobs.find({'profession': re.compile('^' + re.escape(personalInfo['profession']) + '$', re.IGNORECASE)})
+        jobs = Jobs.find({'$and': [
+            {'profession': re.compile('^' + re.escape(personalInfo['profession']) + '$', re.IGNORECASE)},
+            {'schooling': {'$lte': minDegree['degree']}},
+            {'experience': {'$lte': personalInfo['experience']}}
+            ]})
         
         jobs = json.loads(json_util.dumps(jobs))
         cvId = json.loads(json_util.dumps(cv))['$oid']
 
         if len(jobs) > 0:
             for job in jobs:
-                job['matchedP'] = 20
+                job['matchedP'] = 50
                 job['cvId'] = cvId
-
-                if matchSchooling(job['schooling'], education):
-                    job['matchedP'] += 16
-
-                if job['experience'] <= personalInfo['experience']:
-                    job['matchedP'] += 16
                     
                 if matchAge(job['age'], personalInfo['birthdate']):
                     job['matchedP'] += 16
@@ -46,6 +46,7 @@ def create_cv():
                 
                 Jobs.update_one({'_id': ObjectId(job['_id']['$oid'])}, {'$inc': {'seen': 1}})
             
+            jobs = [job for job in jobs if job['matchedP'] >= 60]
             jobs.sort(key = lambda job: job['matchedP'], reverse = True)
         else: 
             return not_found('Por el momento no hay trabajos con los que seas compatible')
@@ -56,7 +57,7 @@ def create_cv():
 
 def matchSchooling(jSchool, cSchools):
     for school in cSchools:
-        if school['degree'].lower() == jSchool.lower():
+        if school['degree'] >= jSchool:
             return True
             
     return False
@@ -74,7 +75,7 @@ def matchAge(range, birthdate):
     return False
 
 def matchLanguges(jLanguages, cLanguages):
-    percent = 16 / len(jLanguages)
+    percent = 17 / len(jLanguages)
     matchedP = 0
 
     for JLanguage in jLanguages:
@@ -85,7 +86,7 @@ def matchLanguges(jLanguages, cLanguages):
     return matchedP
 
 def matchAptitudes(jAptitudes, cAptitudes):
-    percent = 16 / len(jAptitudes)
+    percent = 17 / len(jAptitudes)
     matchedP = 0
 
     for JAptitude in jAptitudes:
@@ -98,7 +99,7 @@ def matchAptitudes(jAptitudes, cAptitudes):
 # Mostrar cv
 @app.route('/cv/<id>', methods = ['GET'])
 def get_cvs(id):
-    jobs = Jobs.find_one({'_id': ObjectId(id)})
+    jobs = Jobs.    find_one({'_id': ObjectId(id)})
     jobs = json.loads(json_util.dumps(jobs))
 
     if len(jobs['cvs']) > 0:
@@ -114,22 +115,14 @@ def get_cvs(id):
 
 @app.route('/cv/match/<id>/<cv>', methods=['POST'])
 def match_job(id, cv):
-    print(request.json)
     jb = request.json
-    print('1', jb)
     del jb['_id'], jb['matchedP'], jb['cvId']
-    print('2', jb)
     job = Jobs.update_one({'_id': ObjectId(id)}, {'$set': jb})
-    print('3', job.matched_count, job.modified_count)
 
     if job.matched_count > 0:
-        print('if 1')
         if job.modified_count > 0:
-            print('if 2')
             return {'message': 'Job succesfully matched'}
         else:
-            print('else 1')
             return internal_server_error('Se produjo un error al aplicar a este trabajo')
     else:
-        print('else 2')
         return not_found('No se encontró el trabajo al que desea aplicar')

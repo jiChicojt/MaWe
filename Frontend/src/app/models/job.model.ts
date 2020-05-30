@@ -10,7 +10,7 @@ export class JobModel {
         public age: string,
         public experience: number,
         public profession: string,
-        public schooling: string,
+        public schooling: number,
         public languages: [{language: string}],
         public aptitudes: [{aptitude: string}],
         public seen: number,

@@ -26,11 +26,11 @@ export class StatsComponent implements OnInit {
   public SMChartData = [];
   public schoolingChartData = [];
   public SMChartColors: Array < any > = [{
-    backgroundColor: ['#87DCC0', '#998AD3'],
+    backgroundColor: ['#78b9ef', '#efea78'],
     borderColor: ['#ece9d7', '#ece9d7']
   }];
   public schoolingChartColors: Array < any > = [{
-    backgroundColor: ['#3eb9ff', '#ff63ea', '#ff6b6b', '#ffee50'],
+    backgroundColor: ['#78efae', '#78b9ef', '#ef78b9', '#efae78'],
     borderColor: ['#ece9d7', '#ece9d7', '#ece9d7', '#ece9d7']
   }];
 
