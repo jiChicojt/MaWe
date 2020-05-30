@@ -16,7 +16,7 @@ CVs = mongo.db.CV
 def create_jobs():
     name = request.json['name'].strip()
     enterprise = request.json['enterprise'].strip()
-    salary = request.json['salary'].strip()
+    salary = request.json['salary']
     description = request.json['description'].strip()
     age = request.json['age'].strip()
     experience = request.json['experience']

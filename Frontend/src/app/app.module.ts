@@ -13,8 +13,6 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
-import { MaxValidatorDirective } from './max-validator.directive';
-import { MinValidatorDirective } from './min-validator.directive';
 
 function getToken(): string {
   let uToken = '';
@@ -31,9 +29,7 @@ function getToken(): string {
         AppComponent,
         LoginComponent,
         NotFoundComponent,
-        HomeComponent,
-        MinValidatorDirective,
-        MaxValidatorDirective
+        HomeComponent
     ],
     imports: [
         BrowserModule,
@@ -53,9 +49,6 @@ function getToken(): string {
         ChartsModule
     ],
     providers: [],
-    exports: [
-        MinValidatorDirective
-    ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
