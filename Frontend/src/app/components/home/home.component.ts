@@ -113,6 +113,7 @@ export class HomeComponent implements OnInit {
     if (value.school && value.degree && value.description && value.startDate && value.endDate) {
       this.formGroup.get('education').reset();
 
+      value.degree = +value.degree;
       this.schools.push(value);
     }
   }
@@ -142,6 +143,7 @@ export class HomeComponent implements OnInit {
       education: this.schools,
       laboral: this.jobs
     };
+
     data.personalInfo.languages = this.job.languages;
     data.personalInfo.aptitudes = this.job.aptitudes;
 
@@ -150,7 +152,7 @@ export class HomeComponent implements OnInit {
         this.isLoading = false;
         this.possibleJobs = success;
 
-        if (this.jobs.length <= 0) {
+        if (this.possibleJobs.length <= 0) {
           this.error = 2;
           this.message = 'No se encontró ninguna coincidencia en la base de datos';
         }

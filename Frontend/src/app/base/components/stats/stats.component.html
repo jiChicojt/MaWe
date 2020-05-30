@@ -1,31 +1,47 @@
-<div id="barChartContainer" class="clr-row">
-    <div class="clr-col-7">
+<div id="jobsChartContainer" class="clr-row">
+    <div class="clr-col-12">
         <div class="card">
             <div class="card-header">
                 Vistos y Matches por trabajo
             </div>
             <div class="card-block">
-                <canvas id="barChart" baseChart
-                        [datasets]="barChartData"
-                        [labels]="barChartLabels"
-                        [options]="barChartOptions"
-                        [legend]="barChartLegend"
-                        [chartType]="barChartType">
+                <canvas id="jobsChart" baseChart
+                        [datasets]="jobsChartData"
+                        [labels]="jobsChartLabels"
+                        [options]="jobsChartOptions"
+                        [legend]="jobsChartLegend"
+                        [chartType]="jobsChartType"
+                        height="120%">
                 </canvas>
             </div>
         </div>
     </div>
-    <div id="pieChartContainer" class="clr-col-5">
+    <div id="SMChartContainer" class="clr-col-6">
         <div class="card">
             <div class="card-header">
                 Vistos y Matches por trabajo
             </div>
             <div class="card-block">
-                <canvas id="pieChart" baseChart
-                        [data]="pieChartData"
-                        [labels]="pieChartLabels"
-                        [chartType]="pieChartType"
-                        [colors]="pieChartColors">
+                <canvas id="SMChart" baseChart
+                        [data]="SMChartData"
+                        [labels]="SMChartLabels"
+                        [chartType]="SMChartType"
+                        [colors]="SMChartColors">
+                </canvas>
+            </div>
+        </div>
+    </div>
+    <div id="SchoolingChartContainer" class="clr-col-6">
+        <div class="card">
+            <div class="card-header">
+                Nivel de escolaridad de aplicantes
+            </div>
+            <div class="card-block">
+                <canvas id="SchoolingChart" baseChart
+                        [data]="schoolingChartData"
+                        [labels]="schoolingChartLabels"
+                        [chartType]="schoolingChartType"
+                        [colors]="schoolingChartColors">
                 </canvas>
             </div>
         </div>

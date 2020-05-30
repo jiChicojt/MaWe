@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
           sessionStorage.setItem('identity', JSON.stringify(user));
           sessionStorage.setItem('token', token);
         }
-        this.router.navigate(['enterprise/jobs']);
+        this.router.navigate(['enterprise/']);
       },
       error => {
         this.error = true;

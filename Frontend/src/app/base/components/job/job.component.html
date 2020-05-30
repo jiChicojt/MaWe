@@ -75,7 +75,10 @@
                         </ul>
                     </div>
                     <div class="clr-col-md-4">
-                        <div class="clr-row"><strong>Escolaridad: </strong>{{jobie.schooling}}</div>
+                        <div class="clr-row" *ngIf="jobie.schooling == 1"><strong>Escolaridad: </strong>Primaria</div>
+                        <div class="clr-row" *ngIf="jobie.schooling == 2"><strong>Escolaridad: </strong>Básicos</div>
+                        <div class="clr-row" *ngIf="jobie.schooling == 3"><strong>Escolaridad: </strong>Diversificado</div>
+                        <div class="clr-row" *ngIf="jobie.schooling == 4"><strong>Escolaridad: </strong>Universidad</div>
                         <div class="clr-row"><strong>Salario: </strong>Q. {{jobie.salary}}</div>
                         <div class="clr-row"><strong>Experiencia: </strong>{{jobie.experience}} años</div>
                         <div class="clr-row"><strong>Edad: </strong>{{jobie.age}} años</div>
@@ -159,11 +162,17 @@
                 <clr-control-error>Este campo es obligatorio</clr-control-error>
             </clr-input-container>
 
-            <clr-input-container>
-                <label>Escolaridad (Primaria, básicos, etc.)</label>
-                <input clrInput required [(ngModel)]="job.schooling" name="schooling" #schooling="ngModel"/>
+            <clr-select-container>
+                <label>Escolaridad</label>
+                <select clrSelect required name="schooling" [(ngModel)]="job.schooling">
+                    <option value="1">Primaria</option>
+                    <option value="2">Básicos</option>
+                    <option value="3">Diversificado</option>
+                    <option value="4">Universidad</option>
+                </select>
+                <clr-control-helper>Seleccione uno</clr-control-helper>
                 <clr-control-error>Este campo es obligatorio</clr-control-error>
-            </clr-input-container>
+            </clr-select-container>
 
             <div class="clr-row">
                 <div class="clr-col-md-6">

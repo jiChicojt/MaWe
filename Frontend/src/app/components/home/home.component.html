@@ -1,7 +1,4 @@
 <div class="main-container" style="background: #ffffff;">
-    <div class="alert alert-app-level">
-
-    </div>
     <header class="header-7" style="background: #ffffff;">
         <div class="branding">
             <a>
@@ -13,401 +10,460 @@
         <div class="header-actions">
             <a [routerLink]="[ '/login']" class="nav-link nav-icon-text">
                 <span class="nav-text" style="color: #444444;"><strong>L<a style="color: #8bc34a;">O</a>G <a
-                            style="color: #8bc34a;">I</a>N</strong></span>
+                        style="color: #8bc34a;">I</a>N</strong></span>
                 <clr-icon shape="login" class="is-solid" style="color: #8bc34a;"></clr-icon>
             </a>
         </div>
     </header>
-    <div class="content-area">
-        <form clrStepper [formGroup]="formGroup" (ngSubmit)="submit()">
-            <clr-stepper-panel formGroupName="personalInfo">
-                <clr-step-title>Creación de Currículum</clr-step-title>
-                <clr-step-description>Información personal</clr-step-description>
-                <clr-step-content *clrIfExpanded>
-                    <div class="clr-row">
-                        <div class="clr-col-md-6">
-                            <clr-input-container>
-                                <label>Nombres</label>
-                                <input clrInput formControlName="name" />
-                                <clr-control-error *clrIfError="'required'">Los nombres son requridos
-                                </clr-control-error>
-                            </clr-input-container>
-                        </div>
-                        <div class="clr-col-md-6">
-                            <clr-input-container>
-                                <label>Apellidos</label>
-                                <input clrInput formControlName="lastname" />
-                                <clr-control-error *clrIfError="'required'">Los apellidos son requeridos
-                                </clr-control-error>
-                            </clr-input-container>
-                        </div>
-                        <div class="clr-col-md-6">
-                            <clr-date-container>
-                                <label>Fecha de nacimiento</label>
-                                <input type="date" clrDate formControlName="birthdate" required />
-                                <clr-control-error *clrIfError="'age'">Fuera del rango de edad</clr-control-error>
-                            </clr-date-container>
-                        </div>
-                        <div class="clr-col-md-6"></div>
-                        <div class="clr-col-md-6">
-                            <clr-input-container>
-                                <label>Profesión</label>
-                                <input clrInput formControlName="profession" />
-                                <clr-control-error *clrIfError="'required'">La profesión es requerida
-                                </clr-control-error>
-                            </clr-input-container>
-                        </div>
-                        <div class="clr-col-md-6">
-                            <clr-input-container>
-                                <label>Años de experiencia</label>
-                                <input clrInput formControlName="experience" type="number" />
-                                <clr-control-error *clrIfError="'required'">Los años de experiencia son requeridos
-                                </clr-control-error>
-                                <clr-control-error *clrIfError="'number'">Este es un campo numérico
-                                </clr-control-error>
-                            </clr-input-container>
-                        </div>
-                        <div class="clr-col-md-6">
-                            <clr-input-container>
-                                <label>Correo electrónico</label>
-                                <input clrInput formControlName="email" type="email" />
-                                <clr-control-error *clrIfError="'required'">El correo electrónico es requerido
-                                </clr-control-error>
-                                <clr-control-error *clrIfError="'email'">Correo inválido</clr-control-error>
-                            </clr-input-container>
-                        </div>
-                        <div class="clr-col-md-6">
-                            <clr-input-container>
-                                <label>Teléfono</label>
-                                <input clrInput formControlName="phone" type="tel" />
-                                <clr-control-error *clrIfError="'required'">El número de teléfono es requerido
-                                </clr-control-error>
-                                <clr-control-error *clrIfError="'number'">Este es un campo numérico
-                                </clr-control-error>
-                                <clr-control-error *clrIfError="'minlength'">El número de teléfono no es válido
-                                </clr-control-error>
-                                <clr-control-error *clrIfError="'maxlength'">El número de teléfono no es válido
-                                </clr-control-error>
-                            </clr-input-container>
-                        </div>
-                        <div class="clr-col-md-6">
-                            <clr-input-container>
-                                <label>País</label>
-                                <input clrInput formControlName="country" />
-                                <clr-control-error *clrIfError="'required'">El país es requerido</clr-control-error>
-                            </clr-input-container>
-                        </div>
-                        <div class="clr-col-md-6">
-                            <clr-input-container>
-                                <label>Ciudad</label>
-                                <input clrInput formControlName="city" />
-                                <clr-control-error *clrIfError="'required'">La ciudad es requerida
-                                </clr-control-error>
-                            </clr-input-container>
-                        </div>
-                        <div class="clr-col-md-6">
-                            <clr-input-container>
-                                <label>Dirección</label>
-                                <input clrInput formControlName="address" />
-                                <clr-control-error *clrIfError="'required'">La dirección es requerida
-                                </clr-control-error>
-                            </clr-input-container>
-                        </div>
-                        <div class="clr-col-md-6">
-                            <clr-input-container style="margin-right: 5px;">
-                                <label>Idiomas</label>
-                                <input clrInput formControlName="languages" />
-                            </clr-input-container>
-                            <button class="btn btn-icon btn-primary btn-sm" type="button" aria-label="newLanguage"
-                                    (click)="newLanguage()"
-                                    style="display: inline-block; vertical-align: middle; margin-right: 5px;">
-                                <clr-icon shape="check"></clr-icon>
-                            </button>
-                            <div style="display: inline-block; vertical-align: middle;"
-                                 *ngFor="let language of job.languages">
+    <div class="content-container">
+        <div class="content-area">
+            <form clrStepper [formGroup]="formGroup" (ngSubmit)="submit()">
+                <clr-stepper-panel formGroupName="personalInfo">
+                    <clr-step-title>Creación de Currículum</clr-step-title>
+                    <clr-step-description>Información personal</clr-step-description>
+                    <clr-step-content *clrIfExpanded>
+                        <div class="clr-row">
+                            <div class="clr-col-md-6">
+                                <clr-input-container>
+                                    <label>Nombres</label>
+                                    <input clrInput formControlName="name"/>
+                                    <clr-control-error *clrIfError="'required'">Los nombres son requridos
+                                    </clr-control-error>
+                                </clr-input-container>
+                            </div>
+                            <div class="clr-col-md-6">
+                                <clr-input-container>
+                                    <label>Apellidos</label>
+                                    <input clrInput formControlName="lastname"/>
+                                    <clr-control-error *clrIfError="'required'">Los apellidos son requeridos
+                                    </clr-control-error>
+                                </clr-input-container>
+                            </div>
+                            <div class="clr-col-md-6">
+                                <clr-date-container>
+                                    <label>Fecha de nacimiento</label>
+                                    <input type="date" clrDate formControlName="birthdate" required/>
+                                    <clr-control-error *clrIfError="'age'">Fuera del rango de edad</clr-control-error>
+                                </clr-date-container>
+                            </div>
+                            <div class="clr-col-md-6"></div>
+                            <div class="clr-col-md-6">
+                                <clr-input-container>
+                                    <label>Profesión</label>
+                                    <input clrInput formControlName="profession"/>
+                                    <clr-control-error *clrIfError="'required'">La profesión es requerida
+                                    </clr-control-error>
+                                </clr-input-container>
+                            </div>
+                            <div class="clr-col-md-6">
+                                <clr-input-container>
+                                    <label>Años de experiencia</label>
+                                    <input clrInput formControlName="experience" type="number"/>
+                                    <clr-control-error *clrIfError="'required'">Los años de experiencia son requeridos
+                                    </clr-control-error>
+                                    <clr-control-error *clrIfError="'number'">Este es un campo numérico
+                                    </clr-control-error>
+                                </clr-input-container>
+                            </div>
+                            <div class="clr-col-md-6">
+                                <clr-input-container>
+                                    <label>Correo electrónico</label>
+                                    <input clrInput formControlName="email" type="email"/>
+                                    <clr-control-error *clrIfError="'required'">El correo electrónico es requerido
+                                    </clr-control-error>
+                                    <clr-control-error *clrIfError="'email'">Correo inválido</clr-control-error>
+                                </clr-input-container>
+                            </div>
+                            <div class="clr-col-md-6">
+                                <clr-input-container>
+                                    <label>Teléfono</label>
+                                    <input clrInput formControlName="phone" type="tel"/>
+                                    <clr-control-error *clrIfError="'required'">El número de teléfono es requerido
+                                    </clr-control-error>
+                                    <clr-control-error *clrIfError="'number'">Este es un campo numérico
+                                    </clr-control-error>
+                                    <clr-control-error *clrIfError="'minlength'">El número de teléfono no es válido
+                                    </clr-control-error>
+                                    <clr-control-error *clrIfError="'maxlength'">El número de teléfono no es válido
+                                    </clr-control-error>
+                                </clr-input-container>
+                            </div>
+                            <div class="clr-col-md-6">
+                                <clr-input-container>
+                                    <label>País</label>
+                                    <input clrInput formControlName="country"/>
+                                    <clr-control-error *clrIfError="'required'">El país es requerido</clr-control-error>
+                                </clr-input-container>
+                            </div>
+                            <div class="clr-col-md-6">
+                                <clr-input-container>
+                                    <label>Ciudad</label>
+                                    <input clrInput formControlName="city"/>
+                                    <clr-control-error *clrIfError="'required'">La ciudad es requerida
+                                    </clr-control-error>
+                                </clr-input-container>
+                            </div>
+                            <div class="clr-col-md-6">
+                                <clr-input-container>
+                                    <label>Dirección</label>
+                                    <input clrInput formControlName="address"/>
+                                    <clr-control-error *clrIfError="'required'">La dirección es requerida
+                                    </clr-control-error>
+                                </clr-input-container>
+                            </div>
+                            <div class="clr-col-md-6">
+                                <clr-input-container style="margin-right: 5px;">
+                                    <label>Idiomas</label>
+                                    <input clrInput formControlName="languages"/>
+                                </clr-input-container>
+                                <button class="btn btn-icon btn-primary btn-sm" type="button" aria-label="newLanguage"
+                                        (click)="newLanguage()"
+                                        style="display: inline-block; vertical-align: middle; margin-right: 5px;">
+                                    <clr-icon shape="check"></clr-icon>
+                                </button>
+                                <div style="display: inline-block; vertical-align: middle;"
+                                     *ngFor="let language of job.languages">
                                     <span class="label label-blue">{{language.language}}
                                         <a class="badge" (click)="delLanguage(language.language)">x</a>
                                     </span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="clr-col-md-6">
-                            <clr-input-container style="margin-right: 5px;">
-                                <label>Aptitudes</label>
-                                <input clrInput formControlName="aptitudes" />
-                            </clr-input-container>
-                            <button class="btn btn-icon btn-primary btn-sm" type="button" aria-label="newAptitudes"
-                                    (click)="newAptitude()"
-                                    style="display: inline-block; vertical-align: middle; margin-left: 5px;">
-                                <clr-icon shape="check"></clr-icon>
-                            </button>
-                            <div style="display: inline-block; vertical-align: middle;"
-                                 *ngFor="let attribute of job.aptitudes">
+                            <div class="clr-col-md-6">
+                                <clr-input-container style="margin-right: 5px;">
+                                    <label>Aptitudes</label>
+                                    <input clrInput formControlName="aptitudes"/>
+                                </clr-input-container>
+                                <button class="btn btn-icon btn-primary btn-sm" type="button" aria-label="newAptitudes"
+                                        (click)="newAptitude()"
+                                        style="display: inline-block; vertical-align: middle; margin-left: 5px;">
+                                    <clr-icon shape="check"></clr-icon>
+                                </button>
+                                <div style="display: inline-block; vertical-align: middle;"
+                                     *ngFor="let attribute of job.aptitudes">
                                     <span class="label label-blue">{{attribute.aptitude}}
                                         <a class="badge" (click)="delAptitude(attribute.aptitude)">x</a>
                                     </span>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <button clrStepButton="next">next</button>
-                </clr-step-content>
-            </clr-stepper-panel>
+                        <button clrStepButton="next">next</button>
+                    </clr-step-content>
+                </clr-stepper-panel>
 
-            <clr-stepper-panel formGroupName="education">
-                <clr-step-title>Creación de Currículum</clr-step-title>
-                <clr-step-description>Escolaridad</clr-step-description>
-                <clr-step-content *clrIfExpanded>
-                    <div class="clr-row">
-                        <div class="card" *ngFor="let school of schools">
-                            <div class="card-header">
-                                {{school.school}}
-                            </div>
-                            <div class="card-block">
-                                <div class="card-title">
-                                    {{school.degree}}
+                <clr-stepper-panel formGroupName="education">
+                    <clr-step-title>Creación de Currículum</clr-step-title>
+                    <clr-step-description>Escolaridad</clr-step-description>
+                    <clr-step-content *clrIfExpanded>
+                        <div class="clr-row">
+                            <div class="card" *ngFor="let school of schools">
+                                <div class="card-header">
+                                    {{school.school}}
                                 </div>
-                                <div class="card-text">
-                                    {{school.description}}
+                                <div class="card-block">
+                                    <div class="card-title" *ngIf="school.degree == 1">Primaria</div>
+                                    <div class="card-title" *ngIf="school.degree == 2">Básicos</div>
+                                    <div class="card-title" *ngIf="school.degree == 3">Diversificado</div>
+                                    <div class="card-title" *ngIf="school.degree == 4">Universidad</div>
+                                    <div class="card-text">
+                                        {{school.description}}
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="clr-row">
+                                        <div class="clr-col-md-6"><a>{{school.startDate}}</a></div>
+                                        <div class="clr-col-md-6"><a>{{school.endDate}}</a></div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="card-footer">
+                        </div>
+                        <div class="clr-row">
+                            <div class="clr-col-md-6">
+                                <clr-input-container>
+                                    <label>Institución</label>
+                                    <input clrInput formControlName="school"/>
+                                </clr-input-container>
+                            </div>
+                            <div class="clr-col-md-6">
+                                <clr-select-container>
+                                    <label>Nivel</label>
+                                    <select clrSelect name="degree" formControlName="degree">
+                                        <option value="1">Primaria</option>
+                                        <option value="2">Básicos</option>
+                                        <option value="3">Diversificado</option>
+                                        <option value="4">Universidad</option>
+                                    </select>
+                                    <clr-control-helper>Seleccione uno</clr-control-helper>
+                                    <clr-control-error>Este campo es obligatorio</clr-control-error>
+                                </clr-select-container>
+                            </div>
+                            <div class="clr-col-md-6">
+                                <clr-textarea-container>
+                                    <label>Descripción del desempeño</label>
+                                    <textarea clrTextarea name="description" formControlName="description"></textarea>
+                                </clr-textarea-container>
+                            </div>
+                            <div class="clr-col-md-6">
                                 <div class="clr-row">
-                                    <div class="clr-col-md-6"><a>{{school.startDate}}</a></div>
-                                    <div class="clr-col-md-6"><a>{{school.endDate}}</a></div>
+                                    <clr-date-container>
+                                        <label>Fecha de inicio</label>
+                                        <input type="date" clrDate formControlName="startDate"/>
+                                        <clr-control-error *clrIfError="'age'">Fuera del rango de edad
+                                        </clr-control-error>
+                                    </clr-date-container>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="clr-row">
-                        <div class="clr-col-md-6">
-                            <clr-input-container>
-                                <label>Institución</label>
-                                <input clrInput formControlName="school" />
-                            </clr-input-container>
-                        </div>
-                        <div class="clr-col-md-6">
-                            <clr-input-container>
-                                <label>Nivel</label>
-                                <input clrInput formControlName="degree" />
-                            </clr-input-container>
-                        </div>
-                        <div class="clr-col-md-6">
-                            <clr-textarea-container>
-                                <label>Descripción del desempeño</label>
-                                <textarea clrTextarea name="description" formControlName="description"></textarea>
-                            </clr-textarea-container>
-                        </div>
-                        <div class="clr-col-md-6">
-                            <div class="clr-row">
-                                <clr-date-container>
-                                    <label>Fecha de inicio</label>
-                                    <input type="date" clrDate formControlName="startDate" />
-                                    <clr-control-error *clrIfError="'age'">Fuera del rango de edad
-                                    </clr-control-error>
-                                </clr-date-container>
-                            </div>
-                            <div class="clr-row">
-                                <clr-date-container>
-                                    <label>Fecha de finalización</label>
-                                    <input type="date" clrDate formControlName="endDate" />
-                                    <clr-control-error *clrIfError="'age'">Fuera del rango de edad
-                                    </clr-control-error>
-                                </clr-date-container>
-                            </div>
-                        </div>
-                        <div class="clr-col-md-12" style="align-items: flex-end;">
-                            <button type="button" class="btn btn-icon btn-primary" aria-label="settings"
-                                    (click)="addNewSchool()">
-                                <clr-icon shape="check"></clr-icon>
-                            </button>
-                        </div>
-                    </div>
-                    <button clrStepButton="next">next</button>
-                </clr-step-content>
-            </clr-stepper-panel>
-
-            <clr-stepper-panel formGroupName="laboral">
-                <clr-step-title>Creación de Currículum</clr-step-title>
-                <clr-step-description>Información laboral</clr-step-description>
-                <clr-step-content *clrIfExpanded>
-                    <div class="clr-row">
-                        <div class="card" *ngFor="let job of jobs">
-                            <div class="card-header">
-                                {{job.title}}
-                            </div>
-                            <div class="card-block">
-                                <div class="card-title">
-                                    {{job.enterprise}} | {{job.phone}}
-                                </div>
-                                <div class="card-text">
-                                    {{job.description}}
-                                </div>
-                            </div>
-                            <div class="card-footer">
                                 <div class="clr-row">
-                                    <div class="clr-col-md-6"><a>{{job.startDate}}</a></div>
-                                    <div class="clr-col-md-6"><a>{{job.endDate}}</a></div>
+                                    <clr-date-container>
+                                        <label>Fecha de finalización</label>
+                                        <input type="date" clrDate formControlName="endDate"/>
+                                        <clr-control-error *clrIfError="'age'">Fuera del rango de edad
+                                        </clr-control-error>
+                                    </clr-date-container>
+                                </div>
+                            </div>
+                            <div class="clr-col-md-12" style="align-items: flex-end;">
+                                <button type="button" class="btn btn-icon btn-primary" aria-label="settings"
+                                        (click)="addNewSchool()">
+                                    <clr-icon shape="check"></clr-icon>
+                                </button>
+                            </div>
+                        </div>
+                        <button clrStepButton="next">next</button>
+                    </clr-step-content>
+                </clr-stepper-panel>
+
+                <clr-stepper-panel formGroupName="laboral">
+                    <clr-step-title>Creación de Currículum</clr-step-title>
+                    <clr-step-description>Información laboral</clr-step-description>
+                    <clr-step-content *clrIfExpanded>
+                        <div class="clr-row">
+                            <div class="card" *ngFor="let job of jobs">
+                                <div class="card-header">
+                                    {{job.title}}
+                                </div>
+                                <div class="card-block">
+                                    <div class="card-title">
+                                        {{job.enterprise}} | {{job.phone}}
+                                    </div>
+                                    <div class="card-text">
+                                        {{job.description}}
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="clr-row">
+                                        <div class="clr-col-md-6"><a>{{job.startDate}}</a></div>
+                                        <div class="clr-col-md-6"><a>{{job.endDate}}</a></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="clr-row">
-                        <div class="clr-col-md-6">
-                            <clr-input-container>
-                                <label>Puesto</label>
-                                <input clrInput formControlName="title" />
-                            </clr-input-container>
-                        </div>
-                        <div class="clr-col-md-6">
-                            <clr-input-container>
-                                <label>Nombre del empleador</label>
-                                <input clrInput formControlName="boss" />
-                            </clr-input-container>
-                        </div>
-                        <div class="clr-col-md-6">
-                            <clr-input-container>
-                                <label>Nombre de la empresa</label>
-                                <input clrInput formControlName="enterprise" />
-                            </clr-input-container>
-                        </div>
-                        <div class="clr-col-md-6">
-                            <clr-input-container>
-                                <label>Teléfono de la empresa</label>
-                                <input clrInput formControlName="phone" type="tel" />
-                                <clr-control-error *clrIfError="'number'">Este es un campo numérico
-                                </clr-control-error>
-                                <clr-control-error *clrIfError="'minlength'">El número de teléfono no es válido
-                                </clr-control-error>
-                                <clr-control-error *clrIfError="'maxlength'">El número de teléfono no es válido
-                                </clr-control-error>
-                            </clr-input-container>
-                        </div>
-                        <div class="clr-col-md-6">
-                            <clr-textarea-container>
-                                <label>Descripción del empleo</label>
-                                <textarea clrTextarea name="description" formControlName="description"></textarea>
-                            </clr-textarea-container>
-                        </div>
-                        <div class="clr-col-md-6">
-                            <div class="clr-row">
-                                <clr-date-container>
-                                    <label>Fecha de inicio</label>
-                                    <input type="date" clrDate formControlName="startDate" />
-                                    <clr-control-error *clrIfError="'age'">Fuera del rango de edad
-                                    </clr-control-error>
-                                </clr-date-container>
+                        <div class="clr-row">
+                            <div class="clr-col-md-6">
+                                <clr-input-container>
+                                    <label>Puesto</label>
+                                    <input clrInput formControlName="title"/>
+                                </clr-input-container>
                             </div>
-                            <div class="clr-row">
-                                <clr-date-container>
-                                    <label>Fecha de finalización</label>
-                                    <input type="date" clrDate formControlName="endDate" />
-                                    <clr-control-error *clrIfError="'age'">Fuera del rango de edad
+                            <div class="clr-col-md-6">
+                                <clr-input-container>
+                                    <label>Nombre del empleador</label>
+                                    <input clrInput formControlName="boss"/>
+                                </clr-input-container>
+                            </div>
+                            <div class="clr-col-md-6">
+                                <clr-input-container>
+                                    <label>Nombre de la empresa</label>
+                                    <input clrInput formControlName="enterprise"/>
+                                </clr-input-container>
+                            </div>
+                            <div class="clr-col-md-6">
+                                <clr-input-container>
+                                    <label>Teléfono de la empresa</label>
+                                    <input clrInput formControlName="phone" type="tel"/>
+                                    <clr-control-error *clrIfError="'number'">Este es un campo numérico
                                     </clr-control-error>
-                                </clr-date-container>
+                                    <clr-control-error *clrIfError="'minlength'">El número de teléfono no es válido
+                                    </clr-control-error>
+                                    <clr-control-error *clrIfError="'maxlength'">El número de teléfono no es válido
+                                    </clr-control-error>
+                                </clr-input-container>
+                            </div>
+                            <div class="clr-col-md-6">
+                                <clr-textarea-container>
+                                    <label>Descripción del empleo</label>
+                                    <textarea clrTextarea name="description" formControlName="description"></textarea>
+                                </clr-textarea-container>
+                            </div>
+                            <div class="clr-col-md-6">
+                                <div class="clr-row">
+                                    <clr-date-container>
+                                        <label>Fecha de inicio</label>
+                                        <input type="date" clrDate formControlName="startDate"/>
+                                        <clr-control-error *clrIfError="'age'">Fuera del rango de edad
+                                        </clr-control-error>
+                                    </clr-date-container>
+                                </div>
+                                <div class="clr-row">
+                                    <clr-date-container>
+                                        <label>Fecha de finalización</label>
+                                        <input type="date" clrDate formControlName="endDate"/>
+                                        <clr-control-error *clrIfError="'age'">Fuera del rango de edad
+                                        </clr-control-error>
+                                    </clr-date-container>
+                                </div>
+                            </div>
+                            <div class="clr-col-md-12" style="align-items: flex-end;">
+                                <button type="button" class="btn btn-icon btn-primary" aria-label="settings"
+                                        (click)="addNewJob()">
+                                    <clr-icon shape="check"></clr-icon>
+                                </button>
                             </div>
                         </div>
-                        <div class="clr-col-md-12" style="align-items: flex-end;">
-                            <button type="button" class="btn btn-icon btn-primary" aria-label="settings"
-                                    (click)="addNewJob()">
-                                <clr-icon shape="check"></clr-icon>
-                            </button>
-                        </div>
-                    </div>
-                    <button clrStepButton="next" (click)="submit()">Aplicar</button>
-                </clr-step-content>
-            </clr-stepper-panel>
+                        <button clrStepButton="next" (click)="submit()">Aplicar</button>
+                    </clr-step-content>
+                </clr-stepper-panel>
 
-            <clr-stepper-panel formGroupName="extra">
-                <clr-step-title>Trabajos compatibles</clr-step-title>
-                <clr-step-description>Seleccione los trabajos a los que desee aplicar</clr-step-description>
-                <div class="alert alert-danger" role="alert" *ngIf="error == 1">
-                    <div class="alert-items">
-                        <div class="alert-item static">
-                            <div class="alert-icon-wrapper">
-                                <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
+                <clr-stepper-panel formGroupName="extra">
+                    <clr-step-title>Trabajos compatibles</clr-step-title>
+                    <clr-step-description>Seleccione los trabajos a los que desee aplicar</clr-step-description>
+                    <div class="alert alert-danger" role="alert" *ngIf="error == 1">
+                        <div class="alert-items">
+                            <div class="alert-item static">
+                                <div class="alert-icon-wrapper">
+                                    <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
+                                </div>
+                                <span class="alert-text">{{message}}</span>
                             </div>
-                            <span class="alert-text">{{message}}</span>
                         </div>
+                        <button type="button" class="close" aria-label="Close" (click)="close()">
+                            <clr-icon aria-hidden="true" shape="close"></clr-icon>
+                        </button>
                     </div>
-                    <button type="button" class="close" aria-label="Close" (click)="close()">
-                        <clr-icon aria-hidden="true" shape="close"></clr-icon>
-                    </button>
-                </div>
-                <div class="alert alert-warning" role="alert" *ngIf="error == 2">
-                    <div class="alert-items">
-                        <div class="alert-item static">
-                            <div class="alert-icon-wrapper">
-                                <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
+                    <div class="alert alert-warning" role="alert" *ngIf="error == 2">
+                        <div class="alert-items">
+                            <div class="alert-item static">
+                                <div class="alert-icon-wrapper">
+                                    <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
+                                </div>
+                                <span class="alert-text">{{message}}</span>
                             </div>
-                            <span class="alert-text">{{message}}</span>
                         </div>
+                        <button type="button" class="close" aria-label="Close" (click)="close()">
+                            <clr-icon aria-hidden="true" shape="close"></clr-icon>
+                        </button>
                     </div>
-                    <button type="button" class="close" aria-label="Close" (click)="close()">
-                        <clr-icon aria-hidden="true" shape="close"></clr-icon>
-                    </button>
-                </div>
-                <div class="alert alert-success" role="alert" *ngIf="error == 0">
-                    <div class="alert-items">
-                        <div class="alert-item static">
-                            <div class="alert-icon-wrapper">
-                                <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
+                    <div class="alert alert-success" role="alert" *ngIf="error == 0">
+                        <div class="alert-items">
+                            <div class="alert-item static">
+                                <div class="alert-icon-wrapper">
+                                    <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
+                                </div>
+                                <span class="alert-text">{{message}}</span>
                             </div>
-                            <span class="alert-text">{{message}}</span>
                         </div>
+                        <button type="button" class="close" aria-label="Close" (click)="close()">
+                            <clr-icon aria-hidden="true" shape="close"></clr-icon>
+                        </button>
                     </div>
-                    <button type="button" class="close" aria-label="Close" (click)="close()">
-                        <clr-icon aria-hidden="true" shape="close"></clr-icon>
-                    </button>
-                </div>
-                <span class="spinner spinner-lg" style="display: block; margin: auto;" *ngIf="isLoading">
+                    <span class="spinner spinner-lg" style="display: block; margin: auto;" *ngIf="isLoading">
                         Loading...
                     </span>
-                <div class="clr-row">
-                    <div class="card" *ngFor="let jobie of possibleJobs; index as i">
-                        <div class="card-header">
-                            <h3>{{jobie.name}}   -   {{jobie.enterprise}}</h3>
-                            <span style="flex: 1 1 auto;"></span>
-                            <button class="btn btn-sm btn-primary" type="button" (click)="matchJob(jobie._id, jobie.cvId, i)">Enviar Currículum</button>
-                        </div>
-                        <div class="card-block">
-                            <div class="card-text">
-                                <div><strong>Descripción</strong>: {{jobie.description}}</div>
-                                <div><strong>Experiencia</strong>: {{jobie.experience}} años</div>
+                    <div class="clr-row">
+                        <div class="card" *ngFor="let school of possibleJobs; index as i">
+                            <div class="card-header">
                                 <div class="clr-row">
-                                    <div class="clr-col-md-4">
-                                        <ul class="list">
-                                            <li *ngIf="jobie.languages">
-                                                <strong>Idiomas</strong>
-                                                <ul class="list">
-                                                    <li *ngFor="let language of jobie.languages">
-                                                        {{language.language}}</li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="clr-col-md-4">
-                                        <ul class="list">
-                                            <li *ngIf="jobie.aptitudes">
-                                                <strong>Aptitudes</strong>
-                                                <ul class="list">
-                                                    <li *ngFor="let aptitude of jobie.aptitudes">
-                                                        {{aptitude.aptitude}}</li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="clr-col-md-4">
-                                        <div class="clr-row"><strong>Escolaridad: </strong>{{jobie.schooling}}</div>
-                                        <div class="clr-row"><strong>Salario: </strong>Q. {{jobie.salary}}</div>
-                                        <div class="clr-row"><strong>Experiencia: </strong>{{jobie.experience}} años</div>
-                                        <div class="clr-row"><strong>Edad: </strong>{{jobie.age}} años</div>
+                                    <h3>{{school.name}}   -   {{school.enterprise}}</h3>
+                                    <span style="flex: 1 1 auto;"></span>
+                                    <h3 *ngIf="school.matchedP >= 90"
+                                        style="color: #3C8500; margin-right: 15px; margin-bottom: 5px">
+                                        Afinidad: {{school.matchedP}}%</h3>
+                                    <a role="tooltip" aria-haspopup="true" class="tooltip tooltip-xs">
+                                        <button *ngIf="school.matchedP >= 90" class="btn btn-icon btn-success"
+                                                type="button"
+                                                aria-label="add" style="margin-bottom: 2.5px"
+                                                (click)="matchJob(school._id, school.cvId, i)">
+                                            <clr-icon shape="circle-arrow" class="is-solid"></clr-icon>
+                                        </button>
+                                        <span class="tooltip-content">Aplicar</span>
+                                    </a>
+                                    <h3 *ngIf="school.matchedP >= 75 && school.matchedP < 90"
+                                        style="color: #0072A3; margin-right: 15px; margin-bottom: 5px">
+                                        Afinidad: {{school.matchedP}}%</h3>
+                                    <a role="tooltip" aria-haspopup="true" class="tooltip tooltip-xs">
+                                        <button *ngIf="school.matchedP >= 75 && school.matchedP < 90"
+                                                class="btn btn-icon btn-primary" type="button" aria-label="add"
+                                                style="margin-bottom: 2.5px"
+                                                (click)="matchJob(school._id, school.cvId, i)">
+                                            <clr-icon shape="circle-arrow" class="is-solid"></clr-icon>
+                                        </button>
+                                        <span class="tooltip-content">Aplicar</span>
+                                    </a>
+                                    <h3 *ngIf="school.matchedP < 75"
+                                        style="color: #DB2100; margin-right: 15px; margin-bottom: 5px">
+                                        Afinidad: {{school.matchedP}}%</h3>
+                                    <a role="tooltip" aria-haspopup="true" class="tooltip tooltip-xs">
+                                        <button *ngIf="school.matchedP < 75" class="btn btn-icon btn-warning"
+                                                type="button"
+                                                aria-label="add" style="margin-bottom: 2.5px"
+                                                (click)="matchJob(school._id, school.cvId, i)">
+                                            <clr-icon shape="circle-arrow" class="is-solid"></clr-icon>
+                                        </button>
+                                        <span class="tooltip-content">Aplicar</span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="card-block">
+                                <div class="card-text">
+                                    <div><strong>Descripción</strong>: {{school.description}}</div>
+                                    <div><strong>Experiencia</strong>: {{school.experience}} años</div>
+                                    <div class="clr-row">
+                                        <div class="clr-col-md-4">
+                                            <ul class="list">
+                                                <li *ngIf="school.languages">
+                                                    <strong>Idiomas</strong>
+                                                    <ul class="list">
+                                                        <li *ngFor="let language of school.languages">
+                                                            {{language.language}}</li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="clr-col-md-4">
+                                            <ul class="list">
+                                                <li *ngIf="school.aptitudes">
+                                                    <strong>Aptitudes</strong>
+                                                    <ul class="list">
+                                                        <li *ngFor="let aptitude of school.aptitudes">
+                                                            {{aptitude.aptitude}}</li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="clr-col-md-4">
+                                            <div class="clr-row" *ngIf="school.schooling == 1">
+                                                <strong>Escolaridad: </strong>Primaria
+                                            </div>
+                                            <div class="clr-row" *ngIf="school.schooling == 2">
+                                                <strong>Escolaridad: </strong>Básicos
+                                            </div>
+                                            <div class="clr-row" *ngIf="school.schooling == 3">
+                                                <strong>Escolaridad: </strong>Diversificado
+                                            </div>
+                                            <div class="clr-row" *ngIf="school.schooling == 4">
+                                                <strong>Escolaridad: </strong>Universidad
+                                            </div>
+                                            <div class="clr-row"><strong>Salario: </strong>Q. {{school.salary}}</div>
+                                            <div class="clr-row"><strong>Experiencia: </strong>{{school.experience}} años
+                                            </div>
+                                            <div class="clr-row"><strong>Edad: </strong>{{school.age}} años</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </clr-stepper-panel>
-        </form>
+                </clr-stepper-panel>
+            </form>
+        </div>
     </div>
 </div>

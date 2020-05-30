@@ -6,7 +6,13 @@ export class StatsModel {
             name: string,
             seen: number,
             matches: number
-        }]
+        }],
+        public schooling: {
+            primaria: number,
+            basicos: number,
+            diversificado: number,
+            universidad: number
+        }
     ) {
     }
 }
